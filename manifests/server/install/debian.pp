@@ -1,8 +1,9 @@
 # (private) install omd for debian like system
 class omd::server::install::debian {
-
   if $omd::server::configure_repo {
-    include apt
+    if $::omd::server::include_apt {
+      include apt
+    }
 
     $os = downcase($::operatingsystem)
     apt::source { 'omd':

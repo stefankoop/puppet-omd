@@ -50,6 +50,7 @@ class omd::server (
   $repo           = $omd::server::params::repo,
   $sites          = $omd::server::params::sites,
   $sites_defaults = $omd::server::params::sites_defaults,
+  $include_apt    = false,
 ) inherits omd::server::params {
   validate_re($ensure, ['^installed|latest|absent|purged$',
                         '^\d\.\d\d$'])
@@ -58,11 +59,11 @@ class omd::server (
   validate_hash($sites)
 
   contain 'omd::server::install'
-  contain 'omd::server::config'
+  #contain 'omd::server::config'
 
-  Class['omd::server::install'] ->
-  Class['omd::server::config']
+  #Class['omd::server::install'] ->
+  #Class['omd::server::config']
 
-  create_resources('omd::site', $sites, $sites_defaults)
+  #create_resources('omd::site', $sites, $sites_defaults)
 
 }
