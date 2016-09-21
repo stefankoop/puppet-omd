@@ -59,11 +59,11 @@ class omd::server (
   validate_hash($sites)
 
   contain 'omd::server::install'
-  #contain 'omd::server::config'
+  contain 'omd::server::config'
 
-  #Class['omd::server::install'] ->
-  #Class['omd::server::config']
+  Class['omd::server::install'] ->
+  Class['omd::server::config']
 
-  #create_resources('omd::site', $sites, $sites_defaults)
+  create_resources('omd::site', $sites, $sites_defaults)
 
 }
